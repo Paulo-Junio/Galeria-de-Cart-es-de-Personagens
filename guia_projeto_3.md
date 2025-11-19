@@ -1,54 +1,155 @@
-# Guia de Execução: Projeto 3 - Galeria de Cartões de Personagens
+# 📘 Guia de Execução
 
-## 🦸 Objetivo do Projeto
+### **Projeto 3 --- Galeria de Cartões de Personagens (Array de Objetos Local)**
 
-Criar uma galeria de cartões usando **Grid** para o layout e **Array de Objetos** no JavaScript para armazenar as informações dos personagens.
+------------------------------------------------------------------------
 
-### Conteúdos Revisados
+## 🦸 **Objetivo do Projeto**
 
-| Conteúdo | Onde é Usado |
-| :--- | :--- |
-| **HTML** | Estrutura básica, tags de imagem e texto. |
-| **CSS** | Estilização de cartões, uso de classes para cores. |
-| **Grid** | Organização da galeria de cartões. |
-| **JavaScript** | Funções, `for...of` (Loop). |
-| **Objetos** | Estrutura de dados de cada personagem (nome, tipo, poder). |
-| **Arrays** | Lista de todos os personagens. |
-| **DOM** | Inserir os cartões gerados no HTML. |
-| **Condições** | Usar o Operador Ternário (`? :`) para definir a classe CSS do cartão. |
+Criar uma galeria de cartões utilizando **CSS Grid** para o layout e
+**JavaScript** para armazenar as informações dos personagens em um
+**Array de Objetos local**, gerando e inserindo os cartões dinamicamente
+no **DOM**.
 
-## 🛠️ Passos para a Execução
+------------------------------------------------------------------------
 
-### 1. Estrutura HTML (`index.html`)
+## 📚 **Conteúdos Revisados**
 
-O HTML é muito simples, contendo apenas o cabeçalho e a `div` vazia (`id="galeria-personagens"`) que será preenchida pelo JavaScript.
+  -----------------------------------------------------------------------
+  Conteúdo                   Onde é Usado
+  -------------------------- --------------------------------------------
+  **HTML**                   Estrutura básica, tags de imagem e texto.
 
-### 2. Estilização CSS (`style.css`)
+  **CSS**                    Estilização dos cartões, uso de classes e
+                             cores.
 
-O CSS é focado em:
--   Estilizar o cartão (`.cartao`) com sombra e transição.
--   Usar `display: grid` com `repeat(auto-fit, minmax(...))` para que a galeria seja **responsiva** e se ajuste automaticamente ao tamanho da tela.
--   Definir classes de cor (`.tag-heroi`, `.tag-vilao`) que serão aplicadas dinamicamente.
+  **Grid**                   Organização da galeria com `display: grid` e
+                             `repeat(auto-fit, minmax(...))`.
 
-### 3. A Magia do JavaScript (`script.js`)
+  **JavaScript**             Funções, Array de Objetos, loop `for...of`.
 
-O código JavaScript é o ponto central:
+  **Objetos**                Estrutura de dados de cada personagem (nome,
+                             tipo, poder, imagem).
 
-#### A. O Array de Objetos (`personagens`):
+  **Arrays**                 Lista local contendo todos os personagens.
 
--   Criamos uma **Lista (Array)** chamada `personagens`.
--   Dentro dessa lista, cada personagem é um **Objeto** com propriedades como `nome`, `tipo`, `poder` e `imagem`.
+  **DOM**                    Inserção dos cartões no HTML via
+                             `innerHTML`.
 
-#### B. O Loop e a Condição:
+  **Condições**              Operador ternário para definir a classe CSS
+                             do cartão com base no tipo.
+  -----------------------------------------------------------------------
 
--   Usamos o **Loop `for...of`** para percorrer a lista `personagens`.
--   Dentro do loop, usamos uma **Condição Ternária** (`personagem.tipo === "Herói" ? "tag-heroi" : "tag-vilao"`) para decidir qual classe CSS de cor será aplicada à tag do personagem.
+------------------------------------------------------------------------
 
-#### C. Inserção no DOM:
+## 🛠️ **Passos para a Execução**
 
--   Para cada personagem, criamos uma string HTML completa (`cartaoHTML`).
--   Usamos o **DOM** (`galeria.innerHTML += ...`) para injetar o HTML gerado dentro da `div` da galeria.
+------------------------------------------------------------------------
 
-## 💡 Dica de Desafio
+### **1. Estrutura HTML (`index_novo.html`)**
 
-Tente adicionar um botão de filtro no cabeçalho. Ao clicar, o JavaScript deve usar um **Loop** para percorrer o Array e mostrar **apenas** os personagens do tipo "Herói" ou "Vilão". (Isso exigirá um `addEventListener` e uma Condição `if` dentro do loop).
+O HTML contém:
+
+-   O cabeçalho (`<header>`) com o título do projeto.\
+-   A `<main id="galeria-personagens">`, que é o container vazio onde o
+    JS irá injetar os cartões.\
+-   As importações do CSS (`style_novo.css`) e do JavaScript
+    (`script_novo.js`).
+
+------------------------------------------------------------------------
+
+### **2. Estilização CSS (`style_novo.css`)**
+
+O CSS define toda a aparência da galeria:
+
+-   O seletor **`#galeria-personagens`** usa `display: grid` e\
+    `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))`\
+    → Isso garante que a galeria seja **responsiva** e se ajuste ao
+    tamanho da tela.
+
+-   A classe **`.cartao`** define o estilo base de cada cartão.
+
+-   As classes de cor:
+
+    -   `.tag-heroi`
+    -   `.tag-vilao`
+    -   `.tag-neutro`
+
+    São aplicadas dinamicamente pelo JavaScript conforme o tipo do
+    personagem.
+
+------------------------------------------------------------------------
+
+### **3. A Magia do JavaScript (`script_novo.js`)**
+
+#### **A. O Array de Objetos**
+
+-   Criamos uma lista chamada **`personagens`**, armazenando todos os
+    dados localmente.
+-   Cada item é um objeto com:
+    -   `nome`
+    -   `tipo`
+    -   `poder`
+    -   `imagem`
+
+#### **B. Loop e Condição**
+
+-   A função **`criarGaleria(lista)`** monta o HTML dos cartões.
+-   Utilizamos **`for...of`** para percorrer o array.
+-   Dentro do loop, usamos **Operador Ternário** para escolher a cor da
+    tag:
+
+``` js
+const classeTag = personagem.tipo === "heroi"
+  ? "tag-heroi"
+  : personagem.tipo === "vilao"
+  ? "tag-vilao"
+  : "tag-neutro";
+```
+
+#### **C. Inserção no DOM**
+
+-   Para cada personagem, montamos um cartão com **template string**.
+-   Em seguida, adicionamos ao DOM:
+
+``` js
+galeria.innerHTML += cartaoHTML;
+```
+
+------------------------------------------------------------------------
+
+## 💡 **Dica de Desafio**
+
+O projeto exibe todos os personagens.\
+Tente adicionar um **filtro** para mostrar apenas "Heróis" ou apenas
+"Vilões".
+
+### ✔️ Como fazer:
+
+1.  **Adicionar um Botão:**\
+    Inclua no `index_novo.html` algo como:
+
+    ``` html
+    <button id="btn-herois">Filtrar Heróis</button>
+    ```
+
+2.  **Criar um Event Listener:**\
+    No `script_novo.js`:
+
+    ``` js
+    document.getElementById("btn-herois").addEventListener("click", () => {
+        // ...
+    });
+    ```
+
+3.  **Usar o Método `filter`:**
+
+    ``` js
+    const herois = personagens.filter(p => p.tipo === "heroi");
+    ```
+
+4.  **Reconstruir a Galeria:**
+
+    ``` js
+    criarGaleria(herois);
+    ```
